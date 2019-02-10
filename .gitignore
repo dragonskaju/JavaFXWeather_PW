@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+target
+gen
+=======
+.idea
+*.iml
+out
+>>>>>>> 5d318fb04f05421ef0481c95cf80359fe55515ef
