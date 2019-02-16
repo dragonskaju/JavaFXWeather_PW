@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +37,10 @@ public class RootController implements Initializable {
     @FXML
     private Label dodajTemperatura_odczuwalna;
 
+    @FXML
+    private ImageView obrazek;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         city.setText("");
@@ -46,16 +52,22 @@ public class RootController implements Initializable {
 
     public void setCity(ActionEvent actionEvent) {
         try {
-            URL jsonURL = new URL(finalURL+city.getText());
+            URL jsonURL = new URL(finalURL + city.getText());
             ObjectMapper objectMapper = new ObjectMapper();
-            System.out.println(finalURL+city.getText());
+            System.out.println(finalURL + city.getText());
             Weather weather = objectMapper.readValue(jsonURL, Weather.class);
+
+
             dodajTemperatura_odczuwalna.setText(String.valueOf(weather.getCurrent().getFeelslike_c()));
             dodajTemperatura.setText(String.valueOf(weather.getCurrent().getTemp_c()));
+
+            obrazek.setImage(new Image("http:"+weather.getCurrent().getCondition().getIcon()));
+
 
 
         } catch (
                 IOException e) {
+            obrazek.setImage(null);
             e.printStackTrace();
         }
 
